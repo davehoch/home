@@ -1,0 +1,36 @@
+[user]
+	name = David Hochhauser
+	email = dhochhauser@clearwateranalytics.com
+[core]
+	excludesfile = /Users/dhochhauser/.gitignore_global
+	editor = subl -w
+[bugtraq]
+	logregex = ([A-Z]+-[0-9]+)
+	url = https://jira.arbfund.com/browse/%BUGID%
+	number = false
+[diff]
+	tool = kdiff3
+[difftool "sourcetree"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+	path = 
+[difftool "kdiff3"]
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+[difftool]
+	prompt = false
+[merge]
+	tool = kdiff3
+[mergetool "sourcetree"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
+[mergetool "kdiff"]
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+[mergetool]
+	prompt = false
+[commit]
+	template = /Users/dhochhauser/.stCommitMsg
+[alias]
+	slog = log --all --graph --decorate --oneline
+	sl = log --all --graph --decorate --oneline --pretty=format:'%C(yellow)%h%d %Creset%s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit
+[filesystem "Oracle Corporation|14.0.1|/dev/disk1s2"]
+	timestampResolution = 7000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
