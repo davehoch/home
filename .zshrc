@@ -12,7 +12,9 @@ setopt NO_CASE_GLOB
 setopt CORRECT  #enables auto correct
 setopt CORRECT_ALL
 
+# ZSH_DISABLE_COMPFIX="true"  #This doesn't seem to work
+# commenting this out for now because this is annoying: Ignore insecure directories and continue [y] or abort compinit [n]?
 autoload -Uz compinit && compinit
 
 #aliases
-alias ll='ls -al'
+alias ll='ls -alh'
