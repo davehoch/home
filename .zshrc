@@ -1,3 +1,4 @@
+
 # Add git info for the prompt
 autoload -Uz vcs_info
 precmd() { vcs_info }
@@ -23,5 +24,8 @@ done
 # commenting this out for now because this is annoying: Ignore insecure directories and continue [y] or abort compinit [n]?
 autoload -Uz compinit && compinit
 
-#aliases
+# aliases
+# Do not put aliases to applications in here.  Use ln -s to make a link instead
+# ln -s <source> /usr/local/bin/<target>
 alias ll='ls -alh'
+alias ql='qlmanage -p "$@" > /dev/null'
