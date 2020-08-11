@@ -34,3 +34,5 @@
 [filesystem "Oracle Corporation|14.0.1|/dev/disk1s2"]
 	timestampResolution = 7000 nanoseconds
 	minRacyThreshold = 0 nanoseconds
+[grep]
+	lineNumber = true
