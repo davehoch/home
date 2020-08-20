@@ -4,6 +4,11 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b'
 
+# good promp chars
+# ⛄️
+# ⮕
+# 👉
+
 # PROMPT
 setopt PROMPT_SUBST
 NEWLINE=$'\n'
@@ -29,3 +34,5 @@ autoload -Uz compinit && compinit
 # ln -s <source> /usr/local/bin/<target>
 alias ll='ls -alh'
 alias ql='qlmanage -p "$@" > /dev/null'
+alias mvnupdate='mvn com.clearwateranalytics:ca-versions-maven-plugin:update-properties com.clearwateranalytics:ca-versions-maven-plugin:use-latest-releases -DallowMajorUpdates=true -Dmaven.version.rules=https://versionmanager.arbfund.com/app/rules/version-rules.xml -DgenerateBackupPoms=false'
+alias mvnfix='mvn com.clearwateranalytics:dependency:resolve-transitives'
