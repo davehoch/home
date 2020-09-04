@@ -14,9 +14,13 @@ setopt PROMPT_SUBST
 NEWLINE=$'\n'
 PROMPT='%F{059}$USER@%m%f %F{029}%~%f %F{088}(${vcs_info_msg_0_})${NEWLINE}%f%F{059}⚡%f'
 
-setopt NO_CASE_GLOB
-setopt CORRECT  #enables auto correct
-setopt CORRECT_ALL
+setopt NO_CASE_GLOB # case insensitive globbing.  i.e D* will match d*
+# setopt CORRECT  # enables auto correct.  It turns out that I don't like the autocorrect
+# setopt CORRECT_ALL
+
+# History file ~/.zsh_history
+setopt HIST_IGNORE_DUPS  # do not store duplications
+setopt HIST_REDUCE_BLANKS  # removes blank lines from history
 
 # Kubernetes
 source <(kubectl completion zsh)
@@ -34,5 +38,6 @@ autoload -Uz compinit && compinit
 # ln -s <source> /usr/local/bin/<target>
 alias ll='ls -alh'
 alias ql='qlmanage -p "$@" > /dev/null'
+alias mvnskip='mvn clean install -DskipDependencyCheck=true'
 alias mvnupdate='mvn com.clearwateranalytics:ca-versions-maven-plugin:update-properties com.clearwateranalytics:ca-versions-maven-plugin:use-latest-releases -DallowMajorUpdates=true -Dmaven.version.rules=https://versionmanager.arbfund.com/app/rules/version-rules.xml -DgenerateBackupPoms=false'
 alias mvnfix='mvn com.clearwateranalytics:dependency:resolve-transitives'
