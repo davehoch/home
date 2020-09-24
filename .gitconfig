@@ -12,7 +12,7 @@
 	tool = kdiff3
 [difftool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [difftool "kdiff3"]
 	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
 [difftool]
@@ -36,3 +36,6 @@
 	minRacyThreshold = 0 nanoseconds
 [grep]
 	lineNumber = true
+[filesystem "Oracle Corporation|15|/dev/disk1s2"]
+	timestampResolution = 11000 nanoseconds
+	minRacyThreshold = 0 nanoseconds

@@ -29,6 +29,9 @@ for filename in $HOME/.kube/config.d/*; do
    export KUBECONFIG=$KUBECONFIG:$filename
 done
 
+#fix for Docker problem:  https://github.com/docker/for-mac/issues/770
+export DOCKER_HOST=tcp://localhost:1234
+
 # ZSH_DISABLE_COMPFIX="true"  #This doesn't seem to work
 # commenting this out for now because this is annoying: Ignore insecure directories and continue [y] or abort compinit [n]?
 autoload -Uz compinit && compinit
@@ -36,6 +39,7 @@ autoload -Uz compinit && compinit
 # aliases
 # Do not put aliases to applications in here.  Use ln -s to make a link instead
 # ln -s <source> /usr/local/bin/<target>
+# ln -s "/Applications/NetBeans/Apache NetBeans 12.1.app/Contents/Resources/NetBeans/netbeans/bin/netbeans" /usr/local/bin/netbeans
 alias ll='ls -alhG'
 alias ls='ls -G'
 alias ql='qlmanage -p "$@" > /dev/null'
