@@ -36,6 +36,15 @@ export DOCKER_HOST=tcp://localhost:1234
 # commenting this out for now because this is annoying: Ignore insecure directories and continue [y] or abort compinit [n]?
 autoload -Uz compinit && compinit
 
+function jira() {
+	open https://jira.arbfund.com/browse/$1
+}
+
+function grok() {
+	open https://opengrok.arbfund.com/source/search\?q=$1
+}
+
+
 # aliases
 # Do not put aliases to applications in here.  Use ln -s to make a link instead
 # ln -s <source> /usr/local/bin/<target>
