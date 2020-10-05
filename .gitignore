@@ -2,5 +2,6 @@
 /*
 # Except for these
 !.gitignore
+!.gitignore_global
 !.gitconfig
 !.zshrc

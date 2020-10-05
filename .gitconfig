@@ -2,8 +2,8 @@
 	name = David Hochhauser
 	email = dhochhauser@clearwateranalytics.com
 [core]
-	excludesfile = /Users/dhochhauser/.gitignore_global
 	editor = subl -w
+	excludesFile = ~/.gitignore_global
 [bugtraq]
 	logregex = ([A-Z]+-[0-9]+)
 	url = https://jira.arbfund.com/browse/%BUGID%
