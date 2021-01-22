@@ -44,6 +44,13 @@ function grok() {
 	open https://opengrok.arbfund.com/source/search\?q=$1
 }
 
+function devbuild() {
+	open https://devbuild.arbfund.com/job/$1/
+}
+
+function versionmanager() {
+	open https://versionmanager.arbfund.com/#/projects/$1\?ac=settings
+}
 
 # aliases
 # Do not put aliases to applications in here.  Use ln -s to make a link instead
