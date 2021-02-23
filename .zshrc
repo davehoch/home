@@ -36,6 +36,16 @@ export DOCKER_HOST=tcp://localhost:1234
 # commenting this out for now because this is annoying: Ignore insecure directories and continue [y] or abort compinit [n]?
 autoload -Uz compinit && compinit
 
+# returns the passed in param, OR the current path if the param is blank or '.'
+function getPathParam() {
+	local param=$1
+	if [ -z "$param" ] || [ "$param" = "." ]
+	then
+		param=${PWD##*/}
+	fi
+
+	echo "$param"
+}
 function jira() {
 	open https://jira.arbfund.com/browse/$1
 }
@@ -45,11 +55,13 @@ function grok() {
 }
 
 function devbuild() {
-	open https://devbuild.arbfund.com/job/$1/
+	local val=$(getPathParam "$@")
+	open https://devbuild.arbfund.com/job/$val/
 }
 
 function versionmanager() {
-	open https://versionmanager.arbfund.com/#/projects/$1\?ac=settings
+	local val=$(getPathParam "$@")
+	open https://versionmanager.arbfund.com/#/projects/$val\?ac=settings
 }
 
 # aliases
