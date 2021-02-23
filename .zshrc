@@ -1,13 +1,12 @@
+# good prompt chars
+# ⛄️
+# ⮕
+# 👉
 
 # Add git info for the prompt
 autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b'
-
-# good promp chars
-# ⛄️
-# ⮕
-# 👉
 
 # PROMPT
 setopt PROMPT_SUBST
@@ -46,6 +45,7 @@ function getPathParam() {
 
 	echo "$param"
 }
+
 function jira() {
 	open https://jira.arbfund.com/browse/$1
 }
