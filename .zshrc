@@ -64,6 +64,11 @@ function versionmanager() {
 	open https://versionmanager.arbfund.com/#/projects/$val\?ac=settings
 }
 
+function stash() {
+	local val=$(getPathParam "$@")
+	open https://stash.arbfund.com/projects/UI/repos/$val/browse
+}
+
 # aliases
 # Do not put aliases to applications in here.  Use ln -s to make a link instead
 # ln -s <source> /usr/local/bin/<target>
