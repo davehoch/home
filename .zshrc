@@ -46,8 +46,20 @@ function getPathParam() {
 	echo "$param"
 }
 
+# Open Jira with the passed in case number
+# If no parameter is passed in, try to pull the case number off the current git branch
+# If no case is found, then just open the Jira dashboard
 function jira() {
-	open https://jira.arbfund.com/browse/$1
+  if (( $1 )); then
+      open https://jira.arbfund.com/browse/$1
+  else
+    local CASE_NUM=$(git branch --show-current | egrep -o '\w*-\d+')
+	if (( $CASE_NUM )); then
+	    open https://jira.arbfund.com/browse/$CASE_NUM
+	else
+		open https://jira.arbfund.com/secure/Dashboard.jspa
+	fi
+  fi
 }
 
 function grok() {
