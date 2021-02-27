@@ -46,6 +46,11 @@ function getPathParam() {
 	echo "$param"
 }
 
+# This only handles encoding forward slashes.  It could be expanded later if needed.
+function urlencode() {
+	echo "$1" | sed 's/\//%252F/g'
+}
+
 # Open Jira with the passed in case number
 # If no parameter is passed in, try to pull the case number off the current git branch
 # If no case is found, then just open the Jira dashboard
@@ -66,9 +71,16 @@ function grok() {
 	open https://opengrok.arbfund.com/source/search\?q=$1
 }
 
+# go to devbuild with project specified
+# if no param is passed, then go to the project in the current directory
 function devbuild() {
-	local val=$(getPathParam "$@")
-	open https://devbuild.arbfund.com/job/$val/
+	if [ -z "$1" ] || [ "$1" = "." ]; then
+		local project=${PWD##*/}
+		local branch=$(urlencode $(git branch --show-current))
+		open https://devbuild.arbfund.com/job/$project/job/$branch
+	else
+		open https://devbuild.arbfund.com/job/$1/
+	fi
 }
 
 function versionmanager() {
