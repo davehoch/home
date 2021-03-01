@@ -103,3 +103,5 @@ alias ql='qlmanage -p "$@" > /dev/null'
 alias mvnskip='mvn clean install -DskipDependencyCheck=true'
 alias mvnupdate='mvn com.clearwateranalytics:ca-versions-maven-plugin:update-properties com.clearwateranalytics:ca-versions-maven-plugin:use-latest-releases -DallowMajorUpdates=true -Dmaven.version.rules=https://versionmanager.arbfund.com/app/rules/version-rules.xml -DgenerateBackupPoms=false'
 alias mvnfix='mvn com.clearwateranalytics:dependency:resolve-transitives'
+alias cypress='./node_modules/cypress/bin/cypress open &'
+
