@@ -2,7 +2,7 @@
 	name = David Hochhauser
 	email = dhochhauser@clearwateranalytics.com
 [core]
-	editor = subl -w
+	editor = code -w
 	excludesFile = ~/.gitignore_global
 [bugtraq]
 	logregex = ([A-Z]+-[0-9]+)
@@ -42,3 +42,6 @@
 [gui]
 	fontdiff = -family Menlo -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 	tabsize = 4
+[filesystem "Oracle Corporation|16|/dev/disk1s2"]
+	timestampResolution = 11000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
