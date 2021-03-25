@@ -3,7 +3,7 @@
 	email = dhochhauser@clearwateranalytics.com
 [core]
 	editor = code -w
-	excludesFile = ~/.gitignore_global
+	excludesfile = /Users/dhochhauser/.gitignore_global
 [bugtraq]
 	logregex = ([A-Z]+-[0-9]+)
 	url = https://jira.arbfund.com/browse/%BUGID%
@@ -45,3 +45,5 @@
 [filesystem "Oracle Corporation|16|/dev/disk1s2"]
 	timestampResolution = 11000 nanoseconds
 	minRacyThreshold = 0 nanoseconds
+[commit]
+	template = /Users/dhochhauser/.stCommitMsg
