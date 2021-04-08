@@ -50,6 +50,25 @@ function urlencode() {
 	echo "$1" | sed 's/\//%252F/g'
 }
 
+# if no param then go to devbuild
+# if param is '.' then go to the project in the current directory
+# if param then go to that project
+function devbuild() {
+	if [ -z "$1" ]; then
+		open https://devbuild.arbfund.com/
+	elif [ "$1" = "." ]; then
+		local project=${PWD##*/}
+		local branch=$(urlencode $(git branch --show-current))
+		open https://devbuild.arbfund.com/job/$project/job/$branch
+	else
+		open https://devbuild.arbfund.com/job/$1/
+	fi
+}
+
+function grok() {
+	open https://opengrok.arbfund.com/source/search\?q=$1
+}
+
 # Open Jira with the passed in case number
 # If no parameter is passed in, try to pull the case number off the current git branch
 # If no case is found, then just open the Jira dashboard
@@ -66,27 +85,12 @@ function jira() {
   fi
 }
 
-# if no param then go to devbuild
-# if param is '.' then go to the project in the current directory
-# if param then go to that project
-function devbuild() {
+function sonar() {
 	if [ -z "$1" ]; then
-		open https://devbuild.arbfund.com/
-	elif [ "$1" = "." ]; then
-		local project=${PWD##*/}
-		local branch=$(urlencode $(git branch --show-current))
-		open https://devbuild.arbfund.com/job/$project/job/$branch
-	else
-		open https://devbuild.arbfund.com/job/$1/
-	fi
-}
-
-function versionmanager() {
-	if [ -z "$1" ]; then
-		open https://versionmanager.arbfund.com
+		open https://sonarqube.cwantools.io
 	else
 		local val=$(getPathParam "$@")
-		open https://versionmanager.arbfund.com/#/projects/$val\?ac=settings
+		open https://sonarqube.cwantools.io/dashboard\?id=com.clearwateranalytics:$val
 	fi
 }
 
@@ -99,12 +103,12 @@ function stash() {
 	fi
 }
 
-function sonar() {
+function versionmanager() {
 	if [ -z "$1" ]; then
-		open https://sonarqube.cwantools.io
+		open https://versionmanager.arbfund.com
 	else
 		local val=$(getPathParam "$@")
-		open https://sonarqube.cwantools.io/dashboard\?id=com.clearwateranalytics:$val
+		open https://versionmanager.arbfund.com/#/projects/$val\?ac=settings
 	fi
 }
 
