@@ -31,9 +31,6 @@
 [alias]
 	slog = log --all --graph --decorate --oneline
 	sl = log --all --graph --decorate --oneline --pretty=format:'%C(yellow)%h%d %Creset%s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit
-[filesystem "Oracle Corporation|14.0.1|/dev/disk1s2"]
-	timestampResolution = 7000 nanoseconds
-	minRacyThreshold = 0 nanoseconds
 [grep]
 	lineNumber = true
 [filesystem "Oracle Corporation|15|/dev/disk1s2"]
@@ -42,6 +39,9 @@
 [gui]
 	fontdiff = -family Menlo -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 	tabsize = 4
+[filesystem "Oracle Corporation|14.0.1|/dev/disk1s2"]
+	timestampResolution = 7000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
 [filesystem "Oracle Corporation|16|/dev/disk1s2"]
 	timestampResolution = 11000 nanoseconds
 	minRacyThreshold = 0 nanoseconds

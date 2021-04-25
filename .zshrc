@@ -35,11 +35,10 @@ export DOCKER_HOST=tcp://localhost:1234
 # commenting this out for now because this is annoying: Ignore insecure directories and continue [y] or abort compinit [n]?
 autoload -Uz compinit && compinit
 
-# returns the passed in param, OR the current path if the param is blank or '.'
+# returns the passed in param, OR the current path if the param is '.'
 function getPathParam() {
 	local param=$1
-	if [ -z "$param" ] || [ "$param" = "." ]
-	then
+	if [ "$param" = "." ]; then
 		param=${PWD##*/}
 	fi
 
@@ -49,6 +48,25 @@ function getPathParam() {
 # This only handles encoding forward slashes.  It could be expanded later if needed.
 function urlencode() {
 	echo "$1" | sed 's/\//%252F/g'
+}
+
+# if no param then go to devbuild
+# if param is '.' then go to the project in the current directory
+# if param then go to that project
+function devbuild() {
+	if [ -z "$1" ]; then
+		open https://devbuild.arbfund.com/
+	elif [ "$1" = "." ]; then
+		local project=${PWD##*/}
+		local branch=$(urlencode $(git branch --show-current))
+		open https://devbuild.arbfund.com/job/$project/job/$branch
+	else
+		open https://devbuild.arbfund.com/job/$1/
+	fi
+}
+
+function grok() {
+	open https://opengrok.arbfund.com/source/search\?q=$1
 }
 
 # Open Jira with the passed in case number
@@ -67,41 +85,42 @@ function jira() {
   fi
 }
 
-function grok() {
-	open https://opengrok.arbfund.com/source/search\?q=$1
+function sonar() {
+	if [ -z "$1" ]; then
+		open https://sonarqube.cwantools.io
+	else
+		local val=$(getPathParam "$@")
+		open https://sonarqube.cwantools.io/dashboard\?id=com.clearwateranalytics:$val
+	fi
 }
 
-# go to devbuild with project specified
-# if no param is passed, then go to the project in the current directory
-function devbuild() {
-	if [ -z "$1" ] || [ "$1" = "." ]; then
-		local project=${PWD##*/}
-		local branch=$(urlencode $(git branch --show-current))
-		open https://devbuild.arbfund.com/job/$project/job/$branch
+function stash() {
+	if [ -z "$1" ]; then
+		open https://stash.arbfund.com
 	else
-		open https://devbuild.arbfund.com/job/$1/
+		local val=$(getPathParam "$@")
+		open https://stash.arbfund.com/projects/UI/repos/$val/browse
 	fi
 }
 
 function versionmanager() {
-	local val=$(getPathParam "$@")
-	open https://versionmanager.arbfund.com/#/projects/$val\?ac=settings
-}
-
-function stash() {
-	local val=$(getPathParam "$@")
-	open https://stash.arbfund.com/projects/UI/repos/$val/browse
+	if [ -z "$1" ]; then
+		open https://versionmanager.arbfund.com
+	else
+		local val=$(getPathParam "$@")
+		open https://versionmanager.arbfund.com/#/projects/$val\?ac=settings
+	fi
 }
 
 # aliases
 # Do not put aliases to applications in here.  Use ln -s to make a link instead
 # ln -s <source> /usr/local/bin/<target>
 # ln -s "/Applications/NetBeans/Apache NetBeans 12.1.app/Contents/Resources/NetBeans/netbeans/bin/netbeans" /usr/local/bin/netbeans
+alias cypress='./node_modules/cypress/bin/cypress open &'
 alias ll='ls -alhdG'
 alias ls='ls -G'
-alias ql='qlmanage -p "$@" > /dev/null'
+alias mvnfix='mvn com.clearwateranalytics:dependency:resolve-transitives'
 alias mvnskip='mvn clean install -DskipDependencyCheck=true'
 alias mvnupdate='mvn com.clearwateranalytics:ca-versions-maven-plugin:update-properties com.clearwateranalytics:ca-versions-maven-plugin:use-latest-releases -DallowMajorUpdates=true -Dmaven.version.rules=https://versionmanager.arbfund.com/app/rules/version-rules.xml -DgenerateBackupPoms=false'
-alias mvnfix='mvn com.clearwateranalytics:dependency:resolve-transitives'
-alias cypress='./node_modules/cypress/bin/cypress open &'
+alias ql='qlmanage -p "$@" > /dev/null'
 
