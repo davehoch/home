@@ -117,7 +117,7 @@ function versionmanager() {
 # ln -s <source> /usr/local/bin/<target>
 # ln -s "/Applications/NetBeans/Apache NetBeans 12.1.app/Contents/Resources/NetBeans/netbeans/bin/netbeans" /usr/local/bin/netbeans
 alias cypress='./node_modules/cypress/bin/cypress open &'
-alias ll='ls -alhdG'
+alias ll='ls -alhG'
 alias ls='ls -G'
 alias mvnfix='mvn com.clearwateranalytics:dependency:resolve-transitives'
 alias mvnskip='mvn clean install -DskipDependencyCheck=true'
