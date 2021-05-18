@@ -117,10 +117,11 @@ function versionmanager() {
 # ln -s <source> /usr/local/bin/<target>
 # ln -s "/Applications/NetBeans/Apache NetBeans 12.1.app/Contents/Resources/NetBeans/netbeans/bin/netbeans" /usr/local/bin/netbeans
 alias cypress='./node_modules/cypress/bin/cypress open &'
-alias ll='ls -alhG'
+alias ll='ls -lhG'
+alias lla='ls -alhG'
 alias ls='ls -G'
 alias mvnfix='mvn com.clearwateranalytics:dependency:resolve-transitives'
-alias mvnskip='mvn clean install -DskipDependencyCheck=true'
+alias mvnquick='mvn clean install -DskipDependencyCheck=true -DskipTests=true'
 alias mvnupdate='mvn com.clearwateranalytics:ca-versions-maven-plugin:update-properties com.clearwateranalytics:ca-versions-maven-plugin:use-latest-releases -DallowMajorUpdates=true -Dmaven.version.rules=https://versionmanager.arbfund.com/app/rules/version-rules.xml -DgenerateBackupPoms=false'
 alias ql='qlmanage -p "$@" > /dev/null'
 
